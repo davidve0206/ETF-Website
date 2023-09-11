@@ -4,6 +4,12 @@ acceptable_terms = ["short", "mid", "long"]
 acceptable_objectives = ["growth", "safeguard"]
 acceptable_absortions = ["low", "mid", "high"]
 
+risk_rating_dict = {
+    "low": 0,
+    "mid": 1,
+    "high": 2
+}
+
 def get_risk_rating(*, term, obj, absortion):
     """ Get the risk rating of the person (from 0-2) depedinding on their
         investment term, objectives and loss absortion capacity"""
@@ -14,32 +20,32 @@ def get_risk_rating(*, term, obj, absortion):
     
     if term == "short":
         if (obj == "growth") & (absortion == "high"):
-            return 1
+            return risk_rating_dict["mid"]
         else:
-            return 0
+            return risk_rating_dict["low"]
     elif term == "mid":
         if obj == "safeguard":
             if absortion == "high":
-                return 1
+                return risk_rating_dict["mid"]
             else:
-                return 0
+                return risk_rating_dict["low"]
         else:
             if absortion == "high":
-                return 2
+                return risk_rating_dict["high"]
             elif absortion == "mid":
-                return 1
+                return risk_rating_dict["mid"]
             else:
-                return 0
+                return risk_rating_dict["low"]
     else:
         if obj == "safeguard":
             if absortion == "low":
-                return 0
+                return risk_rating_dict["low"]
             else:
-                return 1
+                return risk_rating_dict["mid"]
         else:
             if absortion == "low":
-                return 1
+                return risk_rating_dict["mid"]
             else:
-                return 2
+                return risk_rating_dict["high"]
 
 
