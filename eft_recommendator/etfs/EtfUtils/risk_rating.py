@@ -1,5 +1,3 @@
-from django.contrib import messages
-
 acceptable_terms = ["short", "mid", "long"]
 acceptable_objectives = ["growth", "safeguard"]
 acceptable_absortions = ["low", "mid", "high"]
