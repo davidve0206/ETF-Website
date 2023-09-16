@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="p-5 bg-body-secondary rounded">
+    
+    <form action="{% url "etfs:start" %}" method="get">
+      {% csrf_token %}
+      <div class="y-auto">
+        <label for="InputEmail" class="form-label">Please enter your email to beggin:</label>
+        <input type="email" class="form-control" id="InputEmail" name="user_email" aria-describedby="emailHelp">
+        <button type="submit" class="btn btn-success btn-lg mt-3">Get started!</button>
+      </div>
+    </form>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="p-5 bg-body-secondary rounded">
+    <h1>Update ETF Information</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" name="run_script">Run script</button>
+    </form>
+
+</div>
+{% endblock content %}

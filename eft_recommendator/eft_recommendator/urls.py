@@ -22,5 +22,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.IndexPage.as_view(), name="index"),
     path("about/", views.AboutPage.as_view(), name="about"),
-    path("etf/", include("etfs.urls"))
+    path("etfs/", include("etfs.urls"))
 ]

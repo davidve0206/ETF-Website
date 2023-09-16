@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="p-5 bg-body-secondary rounded">
+    <h1>Please tell us about you:</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success btn-lg">Tell me the best ETFs for me!</button>
+    </form>
+
+</div>
+{% endblock content %}
