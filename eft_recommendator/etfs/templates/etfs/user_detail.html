@@ -8,8 +8,8 @@
     <p>The following are the top 5 picks for your portfolio, based on your previous answers:</p>
 
     <ol>
-        {% for etf in basic_user.recommended_etfs.all %}
-        <li><h5>{{ etf.ticker }}</h5>
+        {% for etf in basic_user.recommended_etfs.all|dictsortreversed:"sharpe_ratio" %}
+        <li><h5><a href="{% url "etfs:etf_detail" ticker=etf.ticker %}" id="etf_link">{{ etf.ticker }}</a></h5>
             <ul>
                 <li>Yearly Return (last 10 years): {{ etf.avg_return|mul:100|floatformat:2 }}%</li>
                 <li>Return Volatility (last 10 years): {{ etf.volatility|mul:100|floatformat:2 }}%</li>
@@ -18,6 +18,8 @@
         </li>
         {% endfor %}
     </ol>
+
+    <a class="btn btn-warning btn-lg" href="{% url "etfs:update_user" pk=basic_user.pk %}" role="button">Update my answers</a>
 
 </div>
 {% endblock content %}

@@ -48,6 +48,11 @@ class BasicUserUpdateView(UpdateView):
     model = models.BasicUser
     template_name = "etfs/user_form.html"
     form_class = forms.BasicUserForm
+    
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        self.object = form.save()
+        risk_rating.get_recommended_etfs(self.object, models.Etf)
+        return super().form_valid(form)
 
 class BasicUserDetailView(DetailView):
     model = models.BasicUser
@@ -55,6 +60,7 @@ class BasicUserDetailView(DetailView):
     context_object_name = "basic_user"
     
 # Views for the ETFs
+
 class EtfSummaryView(TemplateView):
     template_name = "etfs/etfs_summary.html"
 
@@ -72,6 +78,20 @@ class EtfDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context["plot_div"] = etf_graphs.get_etf_history_graph(self.object.ticker)
         return context
+    
+class SearchView(TemplateView):
+    template_name = "etfs/search_results.html"
+    
+    def get(self, request, *args, **kwargs):
+        search_value = request.GET.get("search", "")
+        self.results = models.Etf.objects.filter(ticker__icontains=search_value)
+        return super().get(self, request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["search_results"] = self.results
+        return context
+    
 
 # Views to Update the ETF DB Tables
 

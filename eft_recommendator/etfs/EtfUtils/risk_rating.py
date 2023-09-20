@@ -47,6 +47,7 @@ def get_risk_rating(*, term, obj, absortion):
                 return risk_rating_dict["high"]
 
 def get_recommended_etfs(UserInstance, EtfModel):
+    UserInstance.recommended_etfs.clear()
     if UserInstance.risk_rating == risk_rating_dict["low"]:
         query = EtfModel.objects.filter(risk_cluster__exact=0).order_by("-sharpe_ratio")[:5]
         for item in query:
