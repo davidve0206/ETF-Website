@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from django.views.generic import View, CreateView, UpdateView, DetailView, TemplateView
 from django.views.generic.edit import FormMixin
 from . import models, forms
-from .etfutils import etf_prices, risk_rating
+from .etfutils import etf_prices, risk_rating, etf_graphs
 
 # Create your views here.
 
@@ -53,6 +53,25 @@ class BasicUserDetailView(DetailView):
     model = models.BasicUser
     template_name = "etfs/user_detail.html"
     context_object_name = "basic_user"
+    
+# Views for the ETFs
+class EtfSummaryView(TemplateView):
+    template_name = "etfs/etfs_summary.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["plot_div"] = etf_graphs.get_etf_summary_graph()
+        return context
+
+class EtfDetailView(DetailView):
+    model = models.Etf
+    template_name = "etfs/etf_detail.html"
+    pk_url_kwarg = "ticker"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["plot_div"] = etf_graphs.get_etf_history_graph(self.object.ticker)
+        return context
 
 # Views to Update the ETF DB Tables
 

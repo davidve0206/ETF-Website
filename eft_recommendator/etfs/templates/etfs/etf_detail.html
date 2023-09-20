@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load mathfilters %}
+
+{% block content %}
+<div class="p-5 bg-body-secondary rounded">
+    <h1 class="display-3"><strong>{{ etf.ticker }} Price History</strong></h1>
+    
+    <ul>
+        <li>Yearly Return (last 10 years): {{ etf.avg_return|mul:100|floatformat:2 }}%</li>
+        <li>Return Volatility (last 10 years): {{ etf.volatility|mul:100|floatformat:2 }}%</li>
+        <li>Implied Sharpe Ratio (Return/Volatility): {{ etf.sharpe_ratio|floatformat:2 }}x</li>
+    </ul>
+
+    {% autoescape off %}
+    <div class="containter my-5">
+        {{ plot_div }}
+    </div>    
+    {% endautoescape %}
+    
+</div>
+{% endblock content %}

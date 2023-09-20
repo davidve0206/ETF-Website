@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="p-5 bg-body-secondary rounded">
+    <h1 class="display-3"><strong>ETFs currently supported by ETFFinder:</strong></h1>
+    
+    {% autoescape off %}
+    <div class="containter my-3">
+        {{ plot_div }}
+    </div>    
+    {% endautoescape %}
+    
+    <h3>How do you interpret this graph?</h3>
+    <p>For some context, Volatility is how much an investment's returns vary from their average. In summary, 
+        High volatility means big price swings, while Low volatility means steadier prices with less risk.</p>
+    <p>As such, points in the Top-Right of the graph are high-risk, high-reward ETFs, more suited for investors 
+        that can afford to lose some or even most of their money if their investment goes south, while points in 
+        the Bottom-Left are low-risk, low-reward ETFs, more suited for investors who just want to keep their 
+        savings safe but want higher returns on their savings than your average bank account.</p>
+</div>
+{% endblock content %}

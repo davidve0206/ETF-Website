@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 import sqlite3
 import yahoo_fin.stock_info as si
-import plotly.express as px
 from . import tickers
 from datetime import date
 from django.conf import settings
@@ -60,16 +59,15 @@ def get_etf_summary(price_df, Model):
     output_df = set_clusters(returns_summary_df)
 
     # Save the results to the database
-    with sqlite3.connect(db_path) as connection:
-        for row in output_df.itertuples(index=False):
-            Model.objects.update_or_create(ticker=row[0], defaults={
-                "ticker": row[0],
-                "avg_return": row[1],
-                "volatility": row[2],
-                "max_drop": row[3],
-                "sharpe_ratio": row[4],
-                "risk_cluster": row[5]
-            })
+    for row in output_df.itertuples(index=False):
+        Model.objects.update_or_create(ticker=row[0], defaults={
+            "ticker": row[0],
+            "avg_return": row[1],
+            "volatility": row[2],
+            "max_drop": row[3],
+            "sharpe_ratio": row[4],
+            "risk_cluster": row[5]
+        })
 
 def get_etf_prices(Model):
     """ Function that takes a Django Model that contains ETF Prices and fills

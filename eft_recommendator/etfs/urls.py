@@ -9,5 +9,7 @@ urlpatterns = [
     path("", views.StartView.as_view(), name="start"),
     path("user/creation", views.BasicUserCreateView.as_view(), name="create_user"),
     path("user/update", views.BasicUserUpdateView.as_view(), name="update_user"),
-    path("user/recommendations/<int:pk>", views.BasicUserDetailView.as_view(), name="user_detail")
+    path("user/recommendations/<int:pk>", views.BasicUserDetailView.as_view(), name="user_detail"),
+    path("summary/", views.EtfSummaryView.as_view(), name="etfs_summary"),
+    path("<ticker>/", views.EtfDetailView.as_view(), name="etf_detail")
 ]
