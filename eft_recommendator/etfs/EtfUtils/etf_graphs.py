@@ -30,8 +30,7 @@ def get_etf_summary_graph():
     fig.update_traces(hovertemplate='Ticker: %{customdata[0]} <br>Average Return: %{y:.2f}% <br>Volatility: %{x:.2f}%')
     fig.update_yaxes(ticksuffix="%")
     fig.update_xaxes(ticksuffix="%")
-    summary_plot = plot(fig, output_type="div")
-    return summary_plot
+    return to_html(fig, include_plotlyjs="cdn", full_html=False, div_id="price_graph")
 
 def get_etf_history_graph(ticker):
     """ Return a graph of the historical price of a particular Etf, in div format to be included in a template """
