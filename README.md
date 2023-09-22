@@ -7,7 +7,7 @@ The website was built using the Django Framework, and uses the following package
 
 * BeautifulSoup4 to web-scrape the 100 largest ETFs
 * Yahoo-fin for retrieving historical ETF prices
-* Pandas to handle the retreived data
+* Pandas to handle the retrieved data
 * Scikit-learn for k-means clustering
 * Plotly to generate interactive graphs for the webpage
 * Django-bootstrap to simplify some formating required for the user interface
