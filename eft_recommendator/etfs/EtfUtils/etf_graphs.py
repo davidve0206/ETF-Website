@@ -30,7 +30,7 @@ def get_etf_summary_graph():
                         "ticker": True,
                         "avg_return": ':.2f',
                         "volatility": ':.2f'})
-    fig.update_traces(hovertemplate='Ticker: %{customdata[0]} <br>Average Return: %{y:.2f}% <br>Volatility: %{x:.2f}%')
+    fig.update_traces(hovertemplate='Ticker: %{customdata[0]} <br>Average Return: %{y:.2f}% <br>Volatility: %{x:.2f}%', marker_color=base_color)
     fig.update_yaxes(ticksuffix="%")
     fig.update_xaxes(ticksuffix="%")
     fig.update_layout(
