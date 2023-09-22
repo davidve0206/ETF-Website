@@ -49,14 +49,14 @@ def get_risk_rating(*, term, obj, absortion):
 def get_recommended_etfs(UserInstance, EtfModel):
     UserInstance.recommended_etfs.clear()
     if UserInstance.risk_rating == risk_rating_dict["low"]:
-        query = EtfModel.objects.filter(risk_cluster__exact=0).order_by("-sharpe_ratio")[:5]
+        query = EtfModel.objects.filter(risk_cluster__exact=0).order_by("-sharpe_ratio")[:4]
         for item in query:
             UserInstance.recommended_etfs.add(item)
     elif UserInstance.risk_rating == risk_rating_dict["mid"]:
-        query = EtfModel.objects.filter(risk_cluster__exact=1).order_by("-sharpe_ratio")[:5]
+        query = EtfModel.objects.filter(risk_cluster__exact=1).order_by("-sharpe_ratio")[:4]
         for item in query:
             UserInstance.recommended_etfs.add(item)
     else:
-        query = EtfModel.objects.filter(risk_cluster__gte=2).order_by("-sharpe_ratio")[:5]
+        query = EtfModel.objects.filter(risk_cluster__gte=2).order_by("-sharpe_ratio")[:4]
         for item in query:
             UserInstance.recommended_etfs.add(item)

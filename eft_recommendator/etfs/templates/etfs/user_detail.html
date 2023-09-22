@@ -2,24 +2,36 @@
 {% load mathfilters %}
 
 {% block content %}
-<div class="p-5 bg-body-secondary rounded">
-    <h1>Welcome {{ basic_user.name }}</h1>
+<div class="p-5">
+    <h1>Welcome <span class="logo">{{ basic_user.name }}</span></h1>
     
-    <p>The following are the top 5 picks for your portfolio, based on your previous answers:</p>
+    <p>The following are the top 5 picks for your portfolio, based on your investment objectives:</p>
 
-    <ol>
-        {% for etf in basic_user.recommended_etfs.all|dictsortreversed:"sharpe_ratio" %}
-        <li><h5><a href="{% url "etfs:etf_detail" ticker=etf.ticker %}" id="etf_link">{{ etf.ticker }}</a></h5>
-            <ul>
-                <li>Yearly Return (last 10 years): {{ etf.avg_return|mul:100|floatformat:2 }}%</li>
-                <li>Return Volatility (last 10 years): {{ etf.volatility|mul:100|floatformat:2 }}%</li>
-                <li>Implied Sharpe Ratio (Return/Volatility): {{ etf.sharpe_ratio|floatformat:2 }}x</li>
-            </ul>
-        </li>
-        {% endfor %}
-    </ol>
-
-    <a class="btn btn-warning btn-lg" href="{% url "etfs:update_user" pk=basic_user.pk %}" role="button">Update my answers</a>
+    
+    <div class="row">
+      {% for etf in basic_user.recommended_etfs.all|dictsortreversed:"sharpe_ratio" %}
+      <div class="col-lg-6">
+        <div class="rounded p-2 my-2 mx-1 light-bg row">
+            <div class="col-sm-4 align-self-center text-center">
+              <h2><a class="etf-link" href="{% url "etfs:etf_detail" ticker=etf.ticker %}" id="etf_link">{{ etf.ticker }}</a></h2>
+            </div>
+            <div class="col-sm-8 align-self-center">
+              <ul class="etf-summary-list">
+                <li><strong>Yearly Return:</strong> {{ etf.avg_return|mul:100|floatformat:2 }}%</li>
+                <li><strong>Volatility:</strong> {{ etf.volatility|mul:100|floatformat:2 }}%</li>
+                <li><strong>Sharpe Ratio:</strong> {{ etf.sharpe_ratio|floatformat:2 }}x</li>
+              </ul>
+            </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    
+    <a class="btn btn-outline-primary btn-lg my-3" href="{% url "etfs:update_user" pk=basic_user.pk %}" role="button">Update my objectives</a>
+    <p><small>
+        Note: Average returns and return volatility are calculated for the last 10 years.
+        Volatility refers to how much an etf's returns vary from their average. See ETF Summary page for further information.
+    </small></p>
 
 </div>
 {% endblock content %}

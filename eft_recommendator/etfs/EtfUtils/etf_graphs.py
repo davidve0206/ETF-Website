@@ -10,6 +10,9 @@ from pathlib import Path
 db_path = Path.joinpath(settings.BASE_DIR, "db.sqlite3")
 db_summary_table = "etfs_etf"
 db_price_table = "etf_prices"
+base_color="#0671B7"
+bg_color="#E6F1F8"
+dark_gray="#4d4d4d"
 
 def get_etf_summary_graph():
     """ Return a graph of all the Etfs supported on the site, in div format to be included in a template """
@@ -30,6 +33,13 @@ def get_etf_summary_graph():
     fig.update_traces(hovertemplate='Ticker: %{customdata[0]} <br>Average Return: %{y:.2f}% <br>Volatility: %{x:.2f}%')
     fig.update_yaxes(ticksuffix="%")
     fig.update_xaxes(ticksuffix="%")
+    fig.update_layout(
+        margin_r=10,
+        plot_bgcolor=bg_color,
+        font_color=dark_gray,
+        hoverlabel_bgcolor=base_color,
+        xaxis={'linecolor':dark_gray, 'ticks':'outside'},
+        yaxis={'linecolor':dark_gray, 'ticks':'outside'})
     return to_html(fig, include_plotlyjs="cdn", full_html=False, div_id="price_graph")
 
 def get_etf_history_graph(ticker):
@@ -53,6 +63,14 @@ def get_etf_history_graph(ticker):
             dict(count=5, label="5Y", step="year", stepmode="backward"),
             dict(label="10Y", step="all")
             ])
+            )
         )
-    )
+    fig.update_layout(
+        margin_r=10,
+        plot_bgcolor=bg_color,
+        font_color=dark_gray,
+        hoverlabel_bgcolor=base_color,
+        xaxis={'linecolor':dark_gray, 'ticks':'outside', 'showgrid':False},
+        yaxis={'linecolor':dark_gray, 'ticks':'outside'})
+    fig.update_traces(hovertemplate='Date: %{x:|%x} <br>Price: %{y:.2f}', line_color=base_color)
     return to_html(fig, include_plotlyjs="cdn", full_html=False, div_id="price_graph")

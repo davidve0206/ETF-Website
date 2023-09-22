@@ -1,3 +1,85 @@
-.display-3 {
-    padding-bottom: 0.5em;
+:root {
+    --main-color: #0671B7;
+    --main-color-hover: #05629E;
+    --light-bg-color: #E6F1F8;
 }
+
+/* General adjustments */
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    font-weight: 900;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+h2, h3, h4, h5 {
+    font-weight: 900;
+}
+
+.h2-header {
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 0.5rem;
+}
+
+.light-bg {
+    background-color: var(--light-bg-color);
+}
+
+.etf-link {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--main-color);
+    text-decoration: none;
+}
+
+.etf-link:hover {
+    color: var(--main-color-hover);
+}
+
+.etf-summary-list {
+    margin-bottom: 0;
+}
+
+/* Button adjustments */
+
+.btn-primary {
+    background-color: var(--main-color);
+    border-bottom: var(--main-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--main-color-hover);
+}
+
+.btn-outline-primary {
+    color: var(--main-color);
+    border-color: var(--main-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--main-color);
+}
+
+/* NavBar adjustments */
+
+.logo {
+    font-family: 'Exo 2', sans-serif;
+    color: var(--main-color);
+}
+
+.navbar-brand {
+    font-size: 2.0rem;
+}
+
+.nav-link {
+    font-size: 1rem;
+}
+

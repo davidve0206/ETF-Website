@@ -1,26 +1,48 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-<div class="p-5 bg-body-secondary rounded">
-    <h1 class="display-3"><strong>Welcome to ETFFinder!</strong></h1>
+<div class="p-5">
+    <h1><span class="logo">ETFinder</span>, an easier way to build a diversified portfolio</h1>
     
-    <h3>What are ETFs?</h3>
-    <p>Exchange-Traded Funds, or ETFs for short, are like the Swiss Army knives of the investment world. 
-    They're bundles of different investments, like stocks, bonds, or commodities, all rolled into one neat package.</p>
+    <div class="row light-bg">
+        <div class="col-md-4 order-md-last align-self-center text-center">
+            <img class="img-fluid" src="{% static "images/what_is_sm.png" %}" alt="question_icon">
+        </div>
+        <div class="col-md-8 align-self-center ps-5 py-5">
+            <h2>What are ETFs?</h2>
+            <p>Exchange-Traded Funds, or ETFs for short, are like the Swiss Army knives of the investment world. 
+            They're bundles of different investments, like stocks, bonds, or commodities, all rolled into one neat package.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 align-self-center text-center">
+            <img class="img-fluid" src="{% static "images/diversified_portfolio_sm.png" %}" alt="portfolio_icon">
+        </div>
+        <div class="col-md-8 align-self-center pe-2 py-5">
+            <h2>Why should I invest in ETFs?</h2>
+            <p>Firstly, they're easy to buy and sell, just like stocks. You can scoop them up with a click of a button, 
+            making them perfect for beginners. Plus, they often have lower fees compared to mutual funds, which means more money stays in your pocket.</p>
+            <p>Secondly, ETFs give you instant diversification. Instead of putting all your eggs in one basket, 
+            you spread your risk across many different assets. That helps cushion the blow if one investment goes south.</p>
+            <p>Lastly, they're flexible. ETFs cover a wide range of markets and sectors, from technology to real estate, so you can always find one that suits your goals.</p>
+        </div>
+    </div>
+    <div class="row light-bg">
+        <div class="col-md-4 order-md-last align-self-center text-center">
+            <img class="img-fluid" src="{% static "images/how_it_works_sm.png" %}" alt="gear_icon">
+        </div>
+        <div class="col-md-8 align-self-center ps-5 py-5">
+            <h2>So, how does <span class="logo">ETFinder</span> work?</h2>
+            <p>Based on only 3 questions about your investment objectives, we will use our in-house algorithm to determine your risk tolerance. 
+            We will then use this information to recommend a set of 5 ETFs to include in your investment portfolio. It is that simple! </p>
+        </div>
+    </div>
 
-    <h3>Why should I invest in ETFs?</h3>
-    <p>Firstly, they're easy to buy and sell, just like stocks. You can scoop them up with a click of a button, 
-    making them perfect for beginners. Plus, they often have lower fees compared to mutual funds, which means more money stays in your pocket.</p>
-    <p>Secondly, ETFs give you instant diversification. Instead of putting all your eggs in one basket, 
-    you spread your risk across many different assets. That helps cushion the blow if one investment goes south.</p>
-    <p>Lastly, they're flexible. ETFs cover a wide range of markets and sectors, from technology to real estate, so you can always find one that suits your goals.</p>
-
-    <h3>So, how does ETFFinder work?</h3>
-    <p>Based on only 3 questions about your investment objectives, we will use our in-house algorithm to determine your risk tolerance. 
-    We will then use this information to recommend a set of 5 ETFs to include in your investment portfolio. It is that simple!
-    </p>
-    <p>Do you want to know the best ETF's for you to invest in?</p>
-    <a class="btn btn-success btn-lg" href="{% url "etfs:start" %}" role="button">Yes Please!</a>
+    <div class="container-flex mt-5 text-center">
+        <h3>Do you want to know the best ETF's for you to invest in?</h3>
+        <a class="btn btn-primary btn-lg mt-2" href="{% url "etfs:start" %}" role="button">Yes Please!</a>
+    </div>
 
 </div>
 {% endblock content %}

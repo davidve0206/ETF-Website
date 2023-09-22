@@ -2,18 +2,14 @@
 {% load mathfilters %}
 
 {% block content %}
-<div class="p-5 bg-body-secondary rounded">
+<div class="p-5 rounded">
     
     <h1>Search Results</h1>
 
-    <ol>
+    <ol class="list-unstyled">
         {% for etf in search_results %}
-        <li><h5><a href="{% url "etfs:etf_detail" ticker=etf.ticker %}" id="etf_link">{{ etf.ticker }}</a></h5>
-            <ul>
-                <li>Yearly Return (last 10 years): {{ etf.avg_return|mul:100|floatformat:2 }}%</li>
-                <li>Return Volatility (last 10 years): {{ etf.volatility|mul:100|floatformat:2 }}%</li>
-                <li>Implied Sharpe Ratio (Return/Volatility): {{ etf.sharpe_ratio|floatformat:2 }}x</li>
-            </ul>
+        <li>
+            <h5><a class="etf-link" href="{% url "etfs:etf_detail" ticker=etf.ticker %}" id="etf_link">{{ etf.ticker }}</a></h5>
         </li>
         {% endfor %}
     </ol>

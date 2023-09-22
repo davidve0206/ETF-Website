@@ -2,14 +2,19 @@
 {% load mathfilters %}
 
 {% block content %}
-<div class="p-5 bg-body-secondary rounded">
-    <h1 class="display-3"><strong>{{ etf.ticker }} Price History</strong></h1>
-    
-    <ul>
-        <li>Yearly Return (last 10 years): {{ etf.avg_return|mul:100|floatformat:2 }}%</li>
-        <li>Return Volatility (last 10 years): {{ etf.volatility|mul:100|floatformat:2 }}%</li>
-        <li>Implied Sharpe Ratio (Return/Volatility): {{ etf.sharpe_ratio|floatformat:2 }}x</li>
-    </ul>
+<div class="p-5">
+  <div class="row">
+    <div class="col-md-8 align-self-center text-center">
+        <h1><span class="logo">{{ etf.ticker }}</span> Price History</h1>
+    </div>
+    <div class="col-md-4 align-self-center">
+        <ul>
+            <li><strong>Yearly Return:</strong> {{ etf.avg_return|mul:100|floatformat:2 }}%</li>
+            <li><strong>Return Volatility:</strong> {{ etf.volatility|mul:100|floatformat:2 }}%</li>
+            <li><strong>Sharpe Ratio:</strong> {{ etf.sharpe_ratio|floatformat:2 }}x</li>
+        </ul>
+    </div>
+  </div>
 
     {% autoescape off %}
     <div class="containter my-5">

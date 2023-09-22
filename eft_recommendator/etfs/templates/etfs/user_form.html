@@ -1,13 +1,14 @@
 {% extends "base.html" %}
+{% load bootstrap5 %}
 
 {% block content %}
-<div class="p-5 bg-body-secondary rounded">
-    <h1>Please tell us about you:</h1>
+<div class="p-5 light-bg rounded">
+    <h2 class="h2-header">Please tell us about your investment objectives:</h2>
     
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-success btn-lg">Tell me the best ETFs for me!</button>
+        {% bootstrap_form form %}
+        <button type="submit" class="btn btn-primary btn-lg">Tell me the best ETFs for me!</button>
     </form>
 
 </div>
